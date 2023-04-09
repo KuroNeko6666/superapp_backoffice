@@ -1,0 +1,238 @@
+<div class="flex flex-col h-fit gap-3 relative">
+  <div class="flex flex-col">
+    <span class="text-lg font-bold">Manajemen Aktivitas</span>
+    <span></span>
+  </div>
+
+  <div class="bg-white shadow p-3 rounded-lg flex flex-col gap-3 overflow-x-auto" *ngIf="mode == 0">
+    <div class="flex flex-row place-items-center w-full gap-2 justify-between">
+      <div class=" basis-1/5">
+        <span class="font-bold text-base">Tabel Aktivitas</span>
+      </div>
+      <form class="flex flex-row gap-2 place-items-center w-full justify-end" [formGroup]="form">
+        <input type="text" class="bg-slate-100 focus:outline-none focus:ring-0 rounded-lg px-3 py-2 basis-1/2"
+          placeholder="Cari" formControlName="search">
+        <button type="button" class="px-3 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-slate-100"
+          (click)="changeMode(1)">Tambah</button>
+      </form>
+    </div>
+    <table class="w-full">
+      <thead class="bg-orange-500 text-slate-100 rounded-lg w-full">
+        <tr>
+          <th class="px-3 py-2 text-start">ID</th>
+          <th class="px-3 py-2 text-start">Nama</th>
+          <th class="px-3 py-2 text-start ">Tempat</th>
+          <th class="px-3 py-2 text-start">Waktu</th>
+          <th class="px-3 py-2 text-start max-w-xs">Aksi</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loadingPage && accounts?.paginate?.length">
+        <ng-container *ngFor="let item of accounts?.paginate; let i = index">
+          <tr [ngClass]="i % 2 != 0 ? 'bg-orange-100' : '' ">
+            <td class="px-3 py-2 text-start max-w-xs">{{ item.id }}</td>
+            <td class="px-3 py-2 text-start">{{ item.activity_name }}</td>
+            <td class="px-3 py-2 text-start min-w-max">{{ item.place }}</td>
+            <td class="px-3 py-2 text-start min-w-max">{{ item.time | date}}</td>
+            <td class="px-3 py-2 flex flex-row gap-3 text-lg max-w-xs place-items-center">
+              <button class="text-red-500" (click)="openModalDelete(item)"><i class="fa-solid fa-trash"></i></button>
+              <button class="text-blue-500" (click)="show(item)"><i class="fa-solid fa-pen"></i></button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div class="flex flex-col place-items-center" *ngIf="!loadingPage && !accounts?.paginate?.length">
+      <span>Tidak ada data</span>
+    </div>
+    <div class="flex flex-col place-items-center" *ngIf="loadingPage">
+      <div class="text-xl animate-spin"><i class="fa-solid fa-spinner"></i></div>
+    </div>
+    <div class="flex flex-row place-items-center justify-end gap-3" *ngIf="!loadingPage && accounts?.paginate?.length">
+      <span>Halaman {{ accounts?.page }} dari {{ accounts?.total_page }} </span>
+      <div class="flex flex-row">
+        <button class="px-3 py-2 hover:text-orange-500 text-lg" (click)="paginator(false)"
+          *ngIf="accounts?.page! > 1"><i class="fa-solid fa-caret-left"></i></button>
+        <button class="px-3 py-2 hover:text-orange-500 text-lg" (click)="paginator(true)"
+          *ngIf="accounts?.page != accounts?.total_page"><i class="fa-solid fa-caret-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <form class="bg-white shadow p-3 rounded-lg flex flex-col gap-3" [formGroup]="form" (submit)="create()"
+    *ngIf="mode == 1">
+    <div class="flex flex-col">
+      <span class="text-base font-bold">Form Pendaftaran Aktivitas</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': activity_name?.invalid && activity_name?.touched}">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Judul"
+          formControlName="activity_name">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="activity_name?.hasError('required') && activity_name?.touched">Judul
+        harus diisi!</span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': place?.invalid && place?.touched}">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="text" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Tempat"
+          formControlName="place">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="place?.hasError('required') && place?.touched">Tempat harus
+        diisi!</span>
+    </div>
+
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': time?.invalid && time?.touched}">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="datetime-local" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Waktu"
+          formControlName="time">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="time?.hasError('required') && time?.touched">Waktu harus
+        diisi!</span>
+    </div>
+    <div class="flex flex-row">
+      <label for="dropzone-file"
+        class="px-3 py-2 rounded flex flex-row gap-2 place-items-center bg-orange-500 hover:bg-orange-600 text-slate-100">
+        <i class="fa-solid fa-image"></i>
+        <span>Pilih beberapa file</span>
+        <input id="dropzone-file" type="file" class="hidden" (change)="onChange($event)" [multiple]="true" />
+      </label>
+    </div>
+    <div class="flex items-center justify-center w-full">
+      <div
+        class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+        *ngIf="imageUrl?.length">
+        <div class="flex flex-col gap-2">
+          <ng-container *ngFor="let item of imageUrl; let i = index">
+            <div class="relative">
+              <img [src]="item.image_url" class="z-10 bg-cover h-64" alt="">
+              <button class="absolute px-3 py-2 text-rose-500 top-0 right-0 text-xl" (click)="deleteImage(i)"><i
+                  class="fa-solid fa-trash"></i></button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class=" flex flex-row justify-end gap-2">
+      <button type="button"
+        class="flex flex-row gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 rounded place-items-center text-slate-100"
+        (click)="reset()">
+        <i class="fa-sharp fa-solid fa-xmark"></i>
+        <span>Batal</span>
+      </button>
+      <button type="submit"
+        class="flex flex-row gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded place-items-center text-slate-100">
+        <i class="fa-solid fa-plus"></i>
+        <span>{{ loading ? "Tambah" : "Mengunggah..." }}</span>
+      </button>
+    </div>
+  </form>
+
+  <form class="bg-white shadow p-3 rounded-lg flex flex-col gap-3" [formGroup]="form" (submit)="update(account?.id!)"
+    *ngIf="mode == 2">
+    <div class="flex flex-col">
+      <span class="text-base font-bold">Form Pembaruan Aktivitas</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': activity_name?.invalid && activity_name?.touched}">
+        <i class="fa-solid fa-user"></i>
+        <input type="text" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Judul"
+          formControlName="activity_name">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="activity_name?.hasError('required') && activity_name?.touched">Judul
+        harus diisi!</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': place?.invalid && place?.touched}">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="text" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Tempat"
+          formControlName="place">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="place?.hasError('required') && place?.touched">Tempat harus
+        diisi!</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': time?.invalid && time?.touched}">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="datetime-local" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Sumber"
+          formControlName="time">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="time?.hasError('required') && time?.touched">Sumber harus
+        diisi!</span>
+    </div>
+
+    <div class="flex flex-row">
+      <label for="dropzone-file"
+        class="px-3 py-2 rounded flex flex-row gap-2 place-items-center bg-orange-500 hover:bg-orange-600 text-slate-100">
+        <i class="fa-solid fa-image"></i>
+        <span>Pilih beberapa file</span>
+        <input id="dropzone-file" type="file" class="hidden" (change)="onChange($event)" [multiple]="true" />
+      </label>
+    </div>
+    <div class="flex items-center justify-center w-full">
+      <div
+        class="flex flex-col items-center justify-center w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
+        *ngIf="imageUrl?.length">
+        <div class="flex flex-col gap-2">
+          <ng-container *ngFor="let item of imageUrl; let i = index">
+            <div class="relative">
+              <img [src]="item.image_url" class="z-10 bg-cover h-64" alt="">
+              <button class="absolute px-3 py-2 text-rose-500 top-0 right-0 text-xl" (click)="item.id != undefined ? deleteImageDB(account?.id!, item.id, i) : deleteImage(i)"><i
+                  class="fa-solid fa-trash"></i></button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class=" flex flex-row justify-end gap-2">
+      <button type="button"
+        class="flex flex-row gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 rounded place-items-center text-slate-100"
+        (click)="reset()">
+        <i class="fa-sharp fa-solid fa-xmark"></i>
+        <span>Batal</span>
+      </button>
+      <button type="submit"
+        class="flex flex-row gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded place-items-center text-slate-100">
+        <i class="fa-solid fa-pen"></i>
+        <span>{{ loading ? "Perbarui" : "Mengunggah..." }}</span>
+      </button>
+    </div>
+  </form>
+
+  <div class="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-5 py-4 bg-white shadow-lg rounded max-w-md"
+    *ngIf="modalDelete">
+    <div class="flex flex-col gap-3">
+      <div class="flex flex-row gap-2 text-yellow-600 font-bold text-lg place-items-center">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>PERINGATAN!</span>
+      </div>
+      <span>Hapus berita <span class="font-bold">{{ account?.activity_name| uppercase}}</span> ?</span>
+      <span class="text-xs">Dengan menekan tombol "Hapus" akan menghapus secara <span class="font-bold">PERMANEN</span>
+        seluruh data pada berita <span class="font-bold">{{ account?.activity_name | uppercase}}</span>.</span>
+      <div class="flex flex-row justify-end gap-2">
+        <button type="button"
+          class="flex flex-row gap-2 px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded place-items-center text-slate-100"
+          (click)="reset()">
+          <i class="fa-sharp fa-solid fa-xmark"></i>
+          <span>Batal</span>
+        </button>
+        <button (click)="delete(account?.id!)" type="button"
+          class="flex flex-row gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 rounded place-items-center text-slate-100">
+          <i class="fa-solid fa-trash"></i>
+          <span>Hapus</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,37 @@
+<div class="flex flex-col gap-10 px-5 py-5 justify-center">
+  <div class="flex flex-col text-center">
+    <div class="flex flex-col justify-center place-items-center">
+      <img src="/assets/logo/bawaslu-logo.png" class="h-16 w-16 bg-contain rounded-lg">
+    </div>
+    <span class="font-bold text-xl">Selamat Datang Kembali</span>
+    <span class="text-xs">masuk untuk melanjutkan</span>
+  </div>
+  <form class="flex flex-col gap-3" [formGroup]="form" (submit)="Login()">
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': email?.invalid && email?.touched}">
+        <i class="fa-solid fa-envelope"></i>
+        <input type="text" class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Email"
+          formControlName="email">
+      </div>
+      <span class="text-xs text-red-500" *ngIf="email?.hasError('required') && email?.touched">Email harus diisi!</span>
+      <span class="text-xs text-red-500" *ngIf="email?.hasError('email') && email?.touched">Email tidak valid!</span>
+    </div>
+    <div class="flex flex-col gap-1">
+      <div class="flex flex-row place-items-center px-3 gap-2 bg-slate-100 rounded"
+        [ngClass]="{'border-red-500 border': password?.invalid && password?.touched}">
+        <i class="fa-solid fa-lock"></i>
+        <input [type]="obsecure ? 'password' : 'text'"
+          class="flex-1 focus:outline-none focus:ring-0 bg-transparent h-10" placeholder="Kata Sandi"
+          formControlName="password">
+        <button type="button" class="hover:text-orange-500" (click)="obsecureToggle()"><i class="fa-solid "
+            [ngClass]="obsecure ? 'fa-eye' : 'fa-eye-slash'"></i></button>
+      </div>
+      <span class="text-xs text-red-500" *ngIf="password?.hasError('required') && password?.touched">Password harus
+        diisi!</span>
+      <!-- <span class="text-xs text-red-500">error here</span> -->
+    </div>
+    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white py-2 px-3 rounded-lg">Masuk</button>
+  </form>
+</div>
+<app-notifications></app-notifications>
