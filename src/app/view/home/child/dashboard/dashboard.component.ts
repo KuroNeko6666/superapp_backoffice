@@ -7,6 +7,9 @@ import { NotificationService } from 'src/app/shared/service/notification.service
 import { NotificationForm } from 'src/app/shared/form/notification.form';
 import { ResponseData } from 'src/app/config/response-config';
 import { ChartService } from './service/chart.service';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
 
 
 @Component({
@@ -50,8 +53,27 @@ export class DashboardComponent {
       this.setUserPieChart([this.service.active, this.service.banned])
       this.setNewsActivityBarChart(this.service.labelMonths!, this.service.newsMonth, this.service.activityMonth)
       this.loading = false
+
     })
   }
+
+  exportPDF() {
+    let DATA: HTMLElement = document.getElementById('data-table')!
+    let PDF = new jsPDF('p', 'mm', 'a4');
+
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('data-aktivitas.pdf');
+    });
+
+
+  }
+
 
   setUserBarChart(labels: string[], user: number[], admin: number[], operator: number[]) {
     this.weeklyUserData = {

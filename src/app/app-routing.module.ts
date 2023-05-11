@@ -10,6 +10,11 @@ const routes: Routes = [
     loadChildren: () => import("./view/home/home.module").then(m => m.HomeModule),
   },
   {
+    path: "print",
+    canActivate: [LoginGuard],
+    loadChildren: () => import("./view/prints/prints.module").then(m => m.PrintsModule),
+  },
+  {
     path: "auth",
     canActivate: [LogoutGuard],
     loadChildren: () => import("./view/auth/auth.module").then(m => m.AuthModule),

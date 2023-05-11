@@ -12,6 +12,9 @@ import { UserModel } from 'src/app/shared/model/user.model';
 import { NavigateService } from 'src/app/shared/service/navigate.service';
 import { NotificationService } from 'src/app/shared/service/notification.service';
 import { AccountKeycloakService } from './service/account-keycloak.service';
+import jsPDF from 'jspdf';
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-account-keycloak',
@@ -44,6 +47,10 @@ export class AccountKeycloakComponent {
     private notif: NotificationService,
     public nav: NavigateService
   ) { }
+
+  print(){
+    this.nav.NavigateTo('print/account/user')
+  }
 
   ngOnInit(): void {
 

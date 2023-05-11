@@ -166,6 +166,35 @@ export class DashboardService {
         })
       })
 
+      await lastValueFrom(this.service.get_laporan())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_asn())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_kodeetik())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_pelanggaran())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_pidana())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_register())
+      .then((res) => {
+        console.log(res);
+      })
+      await lastValueFrom(this.service.get_uulain())
+      .then((res) => {
+        console.log(res);
+      })
+
       console.log(this.activityMonth);
       console.log(this.newsMonth);
 

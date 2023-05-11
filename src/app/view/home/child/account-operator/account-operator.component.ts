@@ -10,6 +10,9 @@ import { NavigateService } from 'src/app/shared/service/navigate.service';
 import { NotificationService } from 'src/app/shared/service/notification.service';
 import { AccountAdminService } from '../account-admin/service/account-admin.service';
 import { AccountOperatorService } from './service/account-operator.service';
+import jsPDF from 'jspdf';
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-account-operator',
@@ -42,6 +45,10 @@ export class AccountOperatorComponent {
     private notif: NotificationService,
     public nav: NavigateService
   ) { }
+
+  print(){
+    this.nav.NavigateTo('print/account/operator')
+  }
 
   ngOnInit(): void {
 

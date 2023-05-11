@@ -5,6 +5,7 @@ export const environment = {
     check: `http://188.166.245.130:1323/api/v1/backoffice/token/validation/su`,
     register: `http://188.166.245.130:1323/api/v1/backoffice/auth/register`,
     news: {
+      get_no_limit: "http://188.166.245.130:1323/api/v1/backoffice/news/get/all",
       get_all: `http://188.166.245.130:1323/api/v1/backoffice/news/get_all`,
       get: `http://188.166.245.130:1323/api/v1/backoffice/news/get/`,
       create: `http://188.166.245.130:1323/api/v1/backoffice/news/create`,
@@ -12,6 +13,7 @@ export const environment = {
       delete: `http://188.166.245.130:1323/api/v1/backoffice/news/delete/`,
     },
     activity: {
+      get_no_limit: "http://188.166.245.130:1323/api/v1/backoffice/activity/get/all",
       get_all: `http://188.166.245.130:1323/api/v1/backoffice/activity/get_all`,
       get: `http://188.166.245.130:1323/api/v1/backoffice/activity/get/`,
       create: `http://188.166.245.130:1323/api/v1/backoffice/activity/create`,
@@ -20,6 +22,7 @@ export const environment = {
       delete_image: `http://188.166.245.130:1323/api/v1/backoffice/activity/delete_image/`,
     },
     user: {
+      get_no_limit: "http://188.166.245.130:1323/api/v1/backoffice/superuser/get/all",
       get_all: `http://188.166.245.130:1323/api/v1/backoffice/superuser/get_all`,
       get: `http://188.166.245.130:1323/api/v1/backoffice/superuser/get/`,
       create: `http://188.166.245.130:1323/api/v1/backoffice/auth/register`,
@@ -29,6 +32,7 @@ export const environment = {
 
     },
     keycloak: {
+      get_no_limit: "http://188.166.245.130:1323/api/v1/backoffice/users/get/all",
       get_all: `http://188.166.245.130:1323/api/v1/backoffice/users/get_all`,
       get: `http://188.166.245.130:1323/api/v1/backoffice/users/get/`,
       create: `http://188.166.245.130:1323/api/v1/backoffice/auth_users/register`,
@@ -44,7 +48,17 @@ export const environment = {
       superuser: "http://188.166.245.130:1323/api/v1/backoffice/superuser/get/all",
       activity: "http://188.166.245.130:1323/api/v1/backoffice/activity/get/all",
       news: "http://188.166.245.130:1323/api/v1/backoffice/news/get/all"
-    }
+    },
+    sigap_lapor: {
+      jumlah_laporan: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_laporan/2",
+      jumlah_pelanggaran: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_pelanggaran/2",
+      jumlah_register: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_register/2",
+      jumlah_kode_etik: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_kodeetik/2",
+      jumlah_administrasi: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_administrasi/2",
+      jumlah_pidana: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_pidana/2",
+      jumlah_asn: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_asn/2",
+      jumlah_uulain: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_uulain/2",
+    },
   }
 };
 

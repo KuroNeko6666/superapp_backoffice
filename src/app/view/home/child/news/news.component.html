@@ -12,6 +12,8 @@
       <form class="flex flex-row gap-2 place-items-center w-full justify-end" [formGroup]="form">
         <input type="text" class="bg-slate-100 focus:outline-none focus:ring-0 rounded-lg px-3 py-2 basis-1/2"
           placeholder="Cari" formControlName="search">
+          <button type="button" class="px-3 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-slate-100"
+          (click)="print()"><i class="fa-solid fa-file-pdf"></i> Print</button>
         <button type="button" class="px-3 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-slate-100"
           (click)="changeMode(1)">Tambah</button>
       </form>

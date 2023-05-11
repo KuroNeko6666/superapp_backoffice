@@ -14,6 +14,9 @@ import { NavigateService } from 'src/app/shared/service/navigate.service';
 import { NotificationService } from 'src/app/shared/service/notification.service';
 import { ActivityService } from './service/activity.service';
 import { ActivityImageModel } from 'src/app/shared/model/activity-image.model';
+import jsPDF from 'jspdf';
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-activity',
@@ -98,6 +101,10 @@ export class ActivityComponent {
     console.log("bg-[url('" + this.imageUrl + "')]");
 
     return "bg-[url('" + this.imageUrl + "')]"
+  }
+
+  print(){
+    this.nav.NavigateTo('print/activity')
   }
 
 

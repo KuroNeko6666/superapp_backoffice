@@ -1,100 +1,201 @@
-<div class="flex flex-col gap-3" *ngIf="!loading">
+<div class="flex flex-col gap-3 bg-slate-200" *ngIf="!loading" >
   <div class="flex flex-col">
-    <span class="text-lg font-bold">Dashboard</span>
-    <span></span>
+    <span class="text-lg font-bold">DASHBOARD SIGAP LAPOR</span>
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-2">
-    <div
-      class=" col-span-1 bg-white shadow rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
-      <i class="fa-solid fa-user text-2xl"></i>
-      <div class="flex flex-col">
-        <span class="text-xs font-bold">total pengguna</span>
-        <span class="text-base">{{ service.userTotal| number }}</span>
+  <div class="flex flex-col gap-3" id="data-table">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-2">
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total pengguna</span>
+          <span class="text-base">{{ service.userTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user-gear text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total admin</span>
+          <span class="text-base">{{ service.adminTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user-gear text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total operator</span>
+          <span class="text-base">{{ service.operatorTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-calendar text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total aktivitas</span>
+          <span class="text-base">{{ service.activityTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-newspaper text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total berita</span>
+          <span class="text-base">{{ service.newsTotal| number }}</span>
+        </div>
       </div>
     </div>
-    <div
-      class=" col-span-1 bg-white shadow rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
-      <i class="fa-solid fa-user-gear text-2xl"></i>
-      <div class="flex flex-col">
-        <span class="text-xs font-bold">total admin</span>
-        <span class="text-base">{{ service.adminTotal| number }}</span>
-      </div>
-    </div>
-    <div
-      class=" col-span-1 bg-white shadow rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
-      <i class="fa-solid fa-user-gear text-2xl"></i>
-      <div class="flex flex-col">
-        <span class="text-xs font-bold">total operator</span>
-        <span class="text-base">{{ service.operatorTotal| number }}</span>
-      </div>
-    </div>
-    <div
-      class=" col-span-1 bg-white shadow rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
-      <i class="fa-solid fa-calendar text-2xl"></i>
-      <div class="flex flex-col">
-        <span class="text-xs font-bold">total aktivitas</span>
-        <span class="text-base">{{ service.activityTotal| number }}</span>
-      </div>
-    </div>
-    <div
-      class=" col-span-1 bg-white shadow rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
-      <i class="fa-solid fa-newspaper text-2xl"></i>
-      <div class="flex flex-col">
-        <span class="text-xs font-bold">total berita</span>
-        <span class="text-base">{{ service.newsTotal| number }}</span>
-      </div>
-    </div>
-  </div>
 
-  <div class="grid grid-cols-3 gap-2">
-    <div class="bg-white shadow rounded p-5 col-span-3 md:col-span-2 space-y-3">
-      <div class="flex flex-row place-items-center">
-        <div class="flex-1">
-          <span class="font-bold">Pengguna terbaru</span>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-2 space-y-3">
+        <div class="flex flex-row place-items-center">
+          <div class="flex-1">
+            <span class="font-bold">Pengguna terbaru</span>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeUser(true)">perhari</button>
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeUser(false)">perbulan</button>
+          </div>
         </div>
-        <div class="flex flex-row gap-2">
-          <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeUser(true)">perhari</button>
-          <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeUser(false)">perbulan</button>
+        <canvas baseChart class="chart" [data]="weeklyUserData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
+          [type]="chart.barChartType">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">Data Pengguna aktif</span>
+        <canvas baseChart class="chartUser" [data]="userPieChartData" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">Pengguna terbaru</span>
+        <div class="flex flex-col gap-2">
+          <ng-container *ngFor="let item of service.users">
+            <div class="bg-orange-50 rounded px-3 py-2 flex flex-row place-items-center gap-2">
+              <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
+                <img [src]="item.avatar?.avatar_url" alt="" class=" bg-cover">
+              </div>
+              <span>{{ item.firstname + " " + item.lastname}}</span>
+            </div>
+          </ng-container>
         </div>
       </div>
-      <canvas baseChart class="chart" [data]="weeklyUserData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
-        [type]="chart.barChartType">
-      </canvas>
-    </div>
-    <div class="bg-white shadow rounded p-5 col-span-3 md:col-span-1 space-y-2">
-      <span class="font-bold">Data Pengguna aktif</span>
-      <canvas baseChart class="chartUser" [data]="userPieChartData" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
-        [plugins]="chart.pieChartPlugins">
-      </canvas>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-2 space-y-2">
+        <div class="flex flex-row place-items-center">
+          <div class="flex-1">
+            <span class="font-bold">Berita dan Aktivitas terbaru</span>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeNewsActivity(true)">perhari</button>
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeNewsActivity(false)">perbulan</button>
+          </div>
+        </div>
+        <canvas baseChart class="chartNewsActivity" [data]="weeklyNewsActivityData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
+          [type]="chart.barChartType">
+        </canvas>
+      </div>
     </div>
   </div>
-  <div class="grid grid-cols-3 gap-2">
-    <div class="bg-white shadow rounded p-5 col-span-3 md:col-span-1 space-y-2">
-      <span class="font-bold">Pengguna terbaru</span>
-      <div class="flex flex-col gap-2">
-        <ng-container *ngFor="let item of service.users">
-          <div class="bg-orange-50 rounded px-3 py-2 flex flex-row place-items-center gap-2">
-            <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
-              <img [src]="item.avatar?.avatar_url" alt="" class=" bg-cover">
-            </div>
-            <span>{{ item.firstname + " " + item.lastname}}</span>
-          </div>
-        </ng-container>
+  <div class="flex flex-col">
+    <span class="text-lg font-bold">DASHBOARD SUPERAPP</span>
+    <span><button class="px-3 py-2 rounded bg-orange-500 hover:bg-orange-600 text-white" (click)="exportPDF()">PDF</button></span>
+  </div>
+  <div class="flex flex-col gap-3" id="data-table">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-2">
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total pengguna</span>
+          <span class="text-base">{{ service.userTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user-gear text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total admin</span>
+          <span class="text-base">{{ service.adminTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-user-gear text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total operator</span>
+          <span class="text-base">{{ service.operatorTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-calendar text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total aktivitas</span>
+          <span class="text-base">{{ service.activityTotal| number }}</span>
+        </div>
+      </div>
+      <div
+        class=" col-span-1 bg-white   rounded px-4 py-3 flex flex-row place-items-center gap-3 border-l-4 border-orange-400">
+        <i class="fa-solid fa-newspaper text-2xl"></i>
+        <div class="flex flex-col">
+          <span class="text-xs font-bold">total berita</span>
+          <span class="text-base">{{ service.newsTotal| number }}</span>
+        </div>
       </div>
     </div>
-    <div class="bg-white shadow rounded p-5 col-span-3 md:col-span-2 space-y-2">
-      <div class="flex flex-row place-items-center">
-        <div class="flex-1">
-          <span class="font-bold">Berita dan Aktivitas terbaru</span>
+
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-2 space-y-3">
+        <div class="flex flex-row place-items-center">
+          <div class="flex-1">
+            <span class="font-bold">Pengguna terbaru</span>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeUser(true)">perhari</button>
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeUsers ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeUser(false)">perbulan</button>
+          </div>
         </div>
-        <div class="flex flex-row gap-2">
-          <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeNewsActivity(true)">perhari</button>
-          <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeNewsActivity(false)">perbulan</button>
+        <canvas baseChart class="chart" [data]="weeklyUserData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
+          [type]="chart.barChartType">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">Data Pengguna aktif</span>
+        <canvas baseChart class="chartUser" [data]="userPieChartData" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">Pengguna terbaru</span>
+        <div class="flex flex-col gap-2">
+          <ng-container *ngFor="let item of service.users">
+            <div class="bg-orange-50 rounded px-3 py-2 flex flex-row place-items-center gap-2">
+              <div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
+                <img [src]="item.avatar?.avatar_url" alt="" class=" bg-cover">
+              </div>
+              <span>{{ item.firstname + " " + item.lastname}}</span>
+            </div>
+          </ng-container>
         </div>
       </div>
-      <canvas baseChart class="chartNewsActivity" [data]="weeklyNewsActivityData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
-        [type]="chart.barChartType">
-      </canvas>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-2 space-y-2">
+        <div class="flex flex-row place-items-center">
+          <div class="flex-1">
+            <span class="font-bold">Berita dan Aktivitas terbaru</span>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? 'bg-orange-600 hover:bg-orange-700' : ''" (click)="changeNewsActivity(true)">perhari</button>
+            <button class="px-3 py-2 rounded bg-orange-400 hover:bg-orange-500 text-slate-100" [ngClass]="typeNewsActivity ? '' : 'bg-orange-600 hover:bg-orange-700'" (click)="changeNewsActivity(false)">perbulan</button>
+          </div>
+        </div>
+        <canvas baseChart class="chartNewsActivity" [data]="weeklyNewsActivityData" [options]="chart.barChartOptions" [plugins]="chart.barChartPlugins"
+          [type]="chart.barChartType">
+        </canvas>
+      </div>
     </div>
   </div>
 </div>

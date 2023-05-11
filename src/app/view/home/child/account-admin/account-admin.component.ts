@@ -10,6 +10,9 @@ import { UserModel } from 'src/app/shared/model/user.model';
 import { NavigateService } from 'src/app/shared/service/navigate.service';
 import { NotificationService } from 'src/app/shared/service/notification.service';
 import { AccountAdminService } from './service/account-admin.service';
+import jsPDF from 'jspdf';
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-account-admin',
@@ -67,6 +70,10 @@ export class AccountAdminComponent {
     })
 
     this.service.get()
+  }
+
+  print(){
+    this.nav.NavigateTo('print/account/admin')
   }
 
   public form = this.fb.group({

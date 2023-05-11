@@ -1,0 +1,40 @@
+<div class="h-screen w-screen overflow-y-auto">
+  <div class="flex flex-row justify-between m-5">
+    <button class="px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white" (click)="back()">Kembali</button>
+    <div class="flex flex-row gap-3">
+      <button class="px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white" (click)="exportPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+      <button class="px-3 py-2 bg-orange-500 hover:bg-orange-600 rounded text-white" (click)="exportCSV(data)"><i class="fa-solid fa-file-csv"></i> CSRV</button>
+    </div>
+  </div>
+  <div class="bg-white p-5 rounded-lg flex flex-col gap-3 overflow-x-auto" id="data-table" >
+    <div class="flex flex-row place-items-center justify-center w-full gap-2 ">
+      <span class="font-bold text-lg">DATA ADMIN</span>
+    </div>
+    <table class="w-full">
+      <thead class="bg-orange-500 text-slate-100 rounded-lg w-full">
+        <tr>
+          <th class="px-3 py-2 text-start">ID</th>
+          <th class="px-3 py-2 text-start">Name</th>
+          <th class="px-3 py-2 text-start">Email</th>
+          <th class="px-3 py-2 text-start">Avatar</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="!loadingPage && data?.length">
+        <ng-container *ngFor="let item of data; let i = index">
+          <tr [ngClass]="i % 2 != 0 ? 'bg-orange-100' : '' ">
+            <td class="px-3 py-2 text-start max-w-xs">{{ item.id }}</td>
+            <td class="px-3 py-2 text-start">{{ item.name }}</td>
+            <td class="px-3 py-2 text-start">{{ item.email }}</td>
+            <td class="px-3 py-2 text-start"><a [href]="item.avatar">{{ item.avatar }}</a></td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <div class="flex flex-col place-items-center" *ngIf="!loadingPage && !data?.length">
+      <span>Tidak ada data</span>
+    </div>
+    <div class="flex flex-col place-items-center" *ngIf="loadingPage">
+      <div class="text-xl animate-spin"><i class="fa-solid fa-spinner"></i></div>
+    </div>
+  </div>
+</div>

@@ -20,6 +20,10 @@ export class ActivityApiService {
     private hd: HeaderService
   ) { }
 
+  getAll(): Observable<ResponseModel<ActivityModel[]>> {
+    return this.client.get<ResponseModel<ActivityModel[]>>(this.uri.activity.get_no_limit, {headers: this.hd.headers})
+  }
+
   get(params: HttpParams): Observable<ResponseModel<PaginateModel<ActivityModel[]>>> {
     return this.client.get<ResponseModel<PaginateModel<ActivityModel[]>>>(this.uri.activity.get_all, {headers: this.hd.headers, params: params})
   }

@@ -8,6 +8,13 @@ export class MENU {
       children: []
     },
     {
+      name: "Sigap Lapor",
+      path: "/home/sigap_lapor",
+      icon: "fa-solid fa-house",
+      collapse: true,
+      children: []
+    },
+    {
       name: "Akun",
       path: "/home/account",
       icon: "fa-solid fa-users",

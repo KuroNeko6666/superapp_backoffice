@@ -12,6 +12,10 @@ import { NavigateService } from 'src/app/shared/service/navigate.service';
 import { NotificationService } from 'src/app/shared/service/notification.service';
 import { NewsService } from './service/news.service';
 
+import jsPDF from 'jspdf';
+import * as XLSX from 'xlsx';
+import html2canvas from 'html2canvas';
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -44,6 +48,10 @@ export class NewsComponent {
     private notif: NotificationService,
     public nav: NavigateService
   ) { }
+
+  print(){
+    this.nav.NavigateTo('print/news')
+  }
 
   ngOnInit(): void {
 
