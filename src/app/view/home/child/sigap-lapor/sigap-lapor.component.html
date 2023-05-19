@@ -1,0 +1,65 @@
+<div class="flex flex-col gap-3 bg-slate-200" *ngIf="!loading" >
+  <div class="flex flex-col">
+    <span class="text-lg font-bold">DASHBOARD SIGAP LAPOR</span>
+  </div>
+  <div class="flex flex-col gap-3" id="data-table">
+
+    <div class="grid grid-cols-3 gap-2">
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.laporan.judul }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapLaporan" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.register.judul  }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapRegister" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.pelanggaran.judul  }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapPelanggaran" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.pidana.judul  }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapPidana" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.administrasi.judul  }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapAdministrasi" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.asn.judul  }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapAsn" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.kodeetik.judul }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapKodeEtik" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+      <div class="bg-white   rounded p-5 col-span-3 md:col-span-1 space-y-2">
+        <span class="font-bold">{{ service.uulain.judul }}</span>
+        <canvas baseChart class="chartUser" [data]="sigapUUlain" [type]="chart.pieChartType" [options]="chart.pieChartOptions"
+          [plugins]="chart.pieChartPlugins">
+        </canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class=" h-96 w-full flex flex-col justify-end place-items-center" *ngIf="loading">
+  <i class="fa-solid fa-spinner text-3xl animate-spin"></i>
+</div>

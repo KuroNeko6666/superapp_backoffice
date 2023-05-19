@@ -1,24 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartType, ChartData, ChartEvent } from 'chart.js';
+import { ChartConfiguration, ChartData } from 'chart.js';
+import jsPDF from 'jspdf';
 import { BaseChartDirective } from 'ng2-charts';
-import { DashboardService } from './service/dashboard.service';
+import { ResponseData } from 'src/app/config/response-config';
 import { DashboardModel } from 'src/app/shared/model/dashboard.model';
 import { NotificationService } from 'src/app/shared/service/notification.service';
-import { NotificationForm } from 'src/app/shared/form/notification.form';
-import { ResponseData } from 'src/app/config/response-config';
-import { ChartService } from './service/chart.service';
+import { ChartService } from '../dashboard/service/chart.service';
+import { DashboardService } from '../dashboard/service/dashboard.service';
 import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
-
-
-
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-sigap-lapor',
+  templateUrl: './sigap-lapor.component.html',
+  styleUrls: ['./sigap-lapor.component.css']
 })
-export class DashboardComponent {
-
+export class SigapLaporComponent {
   userBarType: string = "weekly"
   loading: boolean = true
   newsActivityBarType: string = "weekly"
@@ -209,5 +204,4 @@ export class DashboardComponent {
       this.setUserBarChart(this.service.labelMonths!, this.service.userMonth, this.service.adminMonth, this.service.operatorMonth)
     }
   }
-
 }

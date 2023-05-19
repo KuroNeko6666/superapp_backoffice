@@ -62,5 +62,16 @@ export class DashboardApiService {
   get_pelanggaran(): Observable<ResponseModel<any>> {
     return this.client.get<ResponseModel<any>>(this.uri.sigap_lapor.jumlah_pelanggaran, {headers: this.hd.headers})
   }
+  get_administrasi(): Observable<ResponseModel<any>> {
+    return this.client.get<ResponseModel<any>>(this.uri.sigap_lapor.jumlah_administrasi, {headers: this.hd.headers})
+  }
+
+  get_dashboard_formC(type: string, from: string, until: string): Observable<any> {
+    var data = new FormData()
+    data.append("jenis_rekap", type)
+    data.append("from", from)
+    data.append("until", until)
+    return this.client.post<any>(this.uri.form_c.dashboard, {headers: this.hd.headers})
+  }
 
 }

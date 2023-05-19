@@ -59,6 +59,9 @@ export const environment = {
       jumlah_asn: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_asn/2",
       jumlah_uulain: "https://sigaplapor.bawaslu.go.id/api/grafik/jml_uulain/2",
     },
+    form_c: {
+      dashboard: "https://formpencegahan.bawaslu.go.id/api/rekap",
+    }
   }
 };
 

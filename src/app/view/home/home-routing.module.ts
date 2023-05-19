@@ -7,6 +7,10 @@ import { ActivityComponent } from './child/activity/activity.component';
 import { DashboardComponent } from './child/dashboard/dashboard.component';
 import { NewsComponent } from './child/news/news.component';
 import { HomeBaseComponent } from './home-base/home-base.component';
+import { SigapLaporComponent } from './child/sigap-lapor/sigap-lapor.component';
+import { SipsComponent } from './child/sips/sips.component';
+import { FormAComponent } from './child/form-a/form-a.component';
+import { FormCComponent } from './child/form-c/form-c.component';
 
 const routes: Routes = [
   {
@@ -36,6 +40,22 @@ const routes: Routes = [
       {
         path: "news",
         component: NewsComponent
+      },
+      {
+        path: "sigap-lapor",
+        component: SigapLaporComponent
+      },
+      {
+        path: "sips",
+        component: SipsComponent
+      },
+      {
+        path: "form-a",
+        component: FormAComponent
+      },
+      {
+        path: "form-c",
+        component: FormCComponent
       },
       {
         path: "",

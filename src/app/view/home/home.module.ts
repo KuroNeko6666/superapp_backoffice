@@ -15,6 +15,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgChartsModule } from 'ng2-charts';
+import { SigapLaporComponent } from './child/sigap-lapor/sigap-lapor.component';
+import { SipsComponent } from './child/sips/sips.component';
+import { FormAComponent } from './child/form-a/form-a.component';
+import { FormCComponent } from './child/form-c/form-c.component';
+import { MaintanceComponent } from './child/maintance/maintance.component';
 
 
 @NgModule({
@@ -28,6 +33,11 @@ import { NgChartsModule } from 'ng2-charts';
     ActivityComponent,
     SidebarComponent,
     HeaderComponent,
+    SigapLaporComponent,
+    SipsComponent,
+    FormAComponent,
+    FormCComponent,
+    MaintanceComponent,
   ],
   imports: [
     CommonModule,

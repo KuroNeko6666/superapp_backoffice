@@ -10,7 +10,8 @@ export class HeaderService {
 
   public get headers(): HttpHeaders{
     var headers = new HttpHeaders({
-      "Authorization": "Bearer " + this.token
+      "Authorization": "Bearer " + this.token,
+      "x-api-key" : "9013d8eea8d59d8099e6b0c8e1cccdf5c4abb15bb3118d04874b07362703ec15",
     })
     return headers
   }

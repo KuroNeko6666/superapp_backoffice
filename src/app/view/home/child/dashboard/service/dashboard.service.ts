@@ -46,6 +46,16 @@ export class DashboardService {
   public newsTotal: number = 0
   public activityTotal: number = 0
 
+  public laporan: any = {}
+  public pelanggaran: any = {}
+  public administrasi: any = {}
+  public uulain: any = {}
+  public pidana: any = {}
+  public asn: any = {}
+  public register: any = {}
+  public kodeetik: any = {}
+
+
 
   public labels?: string[]
   public labelMonths?: string[]
@@ -168,32 +178,42 @@ export class DashboardService {
 
       await lastValueFrom(this.service.get_laporan())
       .then((res) => {
-        console.log(res);
+
+        this.laporan = res;
       })
       await lastValueFrom(this.service.get_asn())
       .then((res) => {
-        console.log(res);
+        this.asn = res;
       })
       await lastValueFrom(this.service.get_kodeetik())
       .then((res) => {
-        console.log(res);
+        this.kodeetik = res;
       })
       await lastValueFrom(this.service.get_pelanggaran())
       .then((res) => {
-        console.log(res);
+        this.pelanggaran = res;
       })
       await lastValueFrom(this.service.get_pidana())
       .then((res) => {
-        console.log(res);
+        console.log(res)
+        this.pidana = res;
       })
       await lastValueFrom(this.service.get_register())
       .then((res) => {
-        console.log(res);
+        this.register = res;
       })
       await lastValueFrom(this.service.get_uulain())
       .then((res) => {
-        console.log(res);
+        this.uulain = res;
       })
+      await lastValueFrom(this.service.get_administrasi())
+      .then((res) => {
+       this.administrasi = res;
+      })
+      // await lastValueFrom(this.service.get_dashboard_formC("Bentuk", "2023-01-01", "2023-05-01"))
+      // .then((res) => {
+      //   console.log(res);
+      // })
 
       console.log(this.activityMonth);
       console.log(this.newsMonth);
