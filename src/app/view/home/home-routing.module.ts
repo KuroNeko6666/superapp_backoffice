@@ -18,7 +18,7 @@ const routes: Routes = [
     component: HomeBaseComponent,
     children: [
       {
-        path: "dashboard",
+        path: "dashboard/all",
         component: DashboardComponent
       },
       {
@@ -42,7 +42,7 @@ const routes: Routes = [
         component: NewsComponent
       },
       {
-        path: "sigap-lapor",
+        path: "dashboard/sigap-lapor",
         component: SigapLaporComponent
       },
       {

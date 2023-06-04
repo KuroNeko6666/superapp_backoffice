@@ -5,77 +5,15 @@ export class MENU {
       path: "/home/dashboard",
       icon: "fa-solid fa-house",
       collapse: true,
-      children: []
-    },
-    {
-      name: "Sigap Lapor",
-      path: "/home/sigap-lapor",
-      icon: "fa-solid fa-chart-simple",
-      collapse: true,
       children: [
         {
           name: "Dashboard",
-          path: "/home/sigap-lapor",
+          path: "/home/dashboard/all",
           collapse: true,
         },
         {
-          name: "Transaksi",
-          path: "/home/sigap-lapor/transactions",
-          collapse: true,
-        },
-      ]
-    },
-
-    {
-      name: "SIPS",
-      path: "/home/sips",
-      icon: "fa-solid fa-chart-pie",
-      collapse: true,
-      children: [
-        {
-          name: "Dashboard",
-          path: "/home/sips",
-          collapse: true,
-        },
-        {
-          name: "Transaksi",
-          path: "/home/sips/transactions",
-          collapse: true,
-        },
-      ]
-    },
-    {
-      name: "Form A",
-      path: "/home/form-a",
-      icon: "fa-solid fa-file-invoice",
-      collapse: true,
-      children: [
-        {
-          name: "Dashboard",
-          path: "/home/form-a",
-          collapse: true,
-        },
-        {
-          name: "Transaksi",
-          path: "/home/form-a/transactions",
-          collapse: true,
-        },
-      ]
-    },
-    {
-      name: "Form C",
-      path: "/home/form-c",
-      icon: "fa-solid fa-file-invoice",
-      collapse: true,
-      children: [
-        {
-          name: "Dashboard",
-          path: "/home/form-c",
-          collapse: true,
-        },
-        {
-          name: "Transaksi",
-          path: "/home/form-c/transactions",
+          name: "Sigap Lapor",
+          path: "/home/dashboard/sigap-lapor",
           collapse: true,
         },
       ]

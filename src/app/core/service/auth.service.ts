@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginForm } from 'src/app/shared/form/login.form';
@@ -18,8 +18,13 @@ export class AuthService {
   constructor(
     private client: HttpClient,
     private navigate: NavigateService,
-    private hd: HeaderService
+    private hd: HeaderService,
   ) { }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+  }
 
   login(data: LoginForm): Observable<ResponseModel<LoginModel>> {
     return this.client.post<ResponseModel<LoginModel>>(this.uri.login, data.JsonData)
