@@ -27,6 +27,7 @@
           <th class="px-3 py-2 text-start">Username</th>
           <th class="px-3 py-2 text-start">Email</th>
           <th class="px-3 py-2 text-start">Avatar</th>
+          <th class="px-3 py-2 text-start">Jenis</th>
           <th class="px-3 py-2 text-start">Status</th>
           <th class="px-3 py-2 text-start max-w-xs">Aksi</th>
         </tr>
@@ -45,6 +46,7 @@
                 <span>Lihat</span>
               </button>
             </td>
+            <td class="px-3 py-2 text-start">{{ item.role == "public" ? "eksternal" : item.role == "internal" ? "internal" : "tidak terdaftar" }}</td>
             <td class="px-3 py-2 text-start">
               <label class="relative inline-flex items-center cursor-pointer">
                 <input type="checkbox" value="" class="sr-only peer" [checked]="item.account_status" (click)="item.account_status ? banned(true, item.user_id!) : banned(false, item.user_id!)">
@@ -52,7 +54,7 @@
               </label>
             </td>
             <td class="px-3 py-2 flex flex-row gap-3 text-lg max-w-xs">
-              <button class="text-red-500" (click)="openModalDelete(item)"><i class="fa-solid fa-trash"></i></button>
+              <!-- <button class="text-red-500" (click)="openModalDelete(item)"><i class="fa-solid fa-trash"></i></button> -->
               <button class="text-blue-500" (click)="show(item)"><i class="fa-solid fa-pen"></i></button>
             </td>
           </tr>

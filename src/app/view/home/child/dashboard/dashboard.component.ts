@@ -62,7 +62,7 @@ export class DashboardComponent {
       this.setUserBarChart(this.service.labels!, this.service.userWeek, this.service.adminWeek, this.service.operatorWeek)
       this.setUserPieChart([this.service.active, this.service.banned])
       this.setNewsActivityBarChart(this.service.labelMonths!, this.service.newsMonth, this.service.activityMonth)
-      this.setSigapLapor()
+      // this.setSigapLapor()
       this.loading = false
 
     })

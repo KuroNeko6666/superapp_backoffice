@@ -8,7 +8,7 @@ import { UserKeycloakModel } from 'src/app/shared/model/user-keycloak.model';
 @Injectable({
   providedIn: 'root'
 })
-export class DashboardService {
+export class DashboardSigapService {
 
   @Output() data = new EventEmitter<DashboardModel>()
   @Output() loading = new EventEmitter<boolean>()
@@ -67,140 +67,140 @@ export class DashboardService {
     this.labelMonths = this.getLabelMonth()
 
     this.reset()
-    await lastValueFrom(this.service.get_admin())
-      .then((res) => {
-        this.adminTotal = res.data.length
-        res.data?.forEach((data: any) => {
-          this.dates?.forEach((date, i) => {
-            let d = data.created_at?.split("T")[0]
-            if (date == d) {
-              this.adminWeek[i] += 1
-            }
-          })
-          this.months?.forEach((date, i) => {
-            let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
-            if (date == d) {
-              this.adminMonth[i] += 1
-            }
-          })
-        })
-      })
-    await lastValueFrom(this.service.get_operator())
-      .then((res) => {
-        this.operatorTotal = res.data.length
-        res.data?.forEach((data: any) => {
-          this.dates?.forEach((date, i) => {
-            let d = data.created_at?.split("T")[0]
-            if (date == d) {
-              this.operatorWeek[i] += 1
-            }
-          })
-          this.months?.forEach((date, i) => {
-            let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
-            if (date == d) {
-              this.operatorMonth[i] += 1
-            }
-          })
-        })
-      })
-    await lastValueFrom(this.service.get_user())
-      .then((res) => {
-        this.userTotal = res.data.length
-        res.data?.forEach((data: UserKeycloakModel) => {
-          if (data.account_status) {
-            this.active += 1
-          } else {
-            this.banned += 1
-          }
-          if (this.users.length < 6) {
-            this.users.push(data)
-          }
-          this.dates?.forEach((date, i) => {
-            let d = data.created_at?.split("T")[0]
-            if (date == d) {
-              this.userWeek[i] += 1
-            }
-          })
-          this.months?.forEach((date, i) => {
-            let d = data.created_at?.split('T')[0].split('-').slice(0, 2).join('-')
-            if (date == d) {
-              this.userMonth[i] += 1
-            }
-          })
-        })
-      })
-    await lastValueFrom(this.service.get_activity())
-      .then((res) => {
-        this.activityTotal = res.data.length
-        res.data?.forEach((data: any) => {
-          this.dates?.forEach((date, i) => {
-            let d = data.created_at?.split("T")[0]
-            if (date == d) {
-              this.activityWeek[i] += 1
-            }
-          })
-          this.months?.forEach((date, i) => {
-            let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
-            if (date == d) {
-              this.activityMonth[i] += 1
-            }
-          })
-        })
-      })
+    // await lastValueFrom(this.service.get_admin())
+    //   .then((res) => {
+    //     this.adminTotal = res.data.length
+    //     res.data?.forEach((data: any) => {
+    //       this.dates?.forEach((date, i) => {
+    //         let d = data.created_at?.split("T")[0]
+    //         if (date == d) {
+    //           this.adminWeek[i] += 1
+    //         }
+    //       })
+    //       this.months?.forEach((date, i) => {
+    //         let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
+    //         if (date == d) {
+    //           this.adminMonth[i] += 1
+    //         }
+    //       })
+    //     })
+    //   })
+    // await lastValueFrom(this.service.get_operator())
+    //   .then((res) => {
+    //     this.operatorTotal = res.data.length
+    //     res.data?.forEach((data: any) => {
+    //       this.dates?.forEach((date, i) => {
+    //         let d = data.created_at?.split("T")[0]
+    //         if (date == d) {
+    //           this.operatorWeek[i] += 1
+    //         }
+    //       })
+    //       this.months?.forEach((date, i) => {
+    //         let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
+    //         if (date == d) {
+    //           this.operatorMonth[i] += 1
+    //         }
+    //       })
+    //     })
+    //   })
+    // await lastValueFrom(this.service.get_user())
+    //   .then((res) => {
+    //     this.userTotal = res.data.length
+    //     res.data?.forEach((data: UserKeycloakModel) => {
+    //       if (data.account_status) {
+    //         this.active += 1
+    //       } else {
+    //         this.banned += 1
+    //       }
+    //       if (this.users.length < 6) {
+    //         this.users.push(data)
+    //       }
+    //       this.dates?.forEach((date, i) => {
+    //         let d = data.created_at?.split("T")[0]
+    //         if (date == d) {
+    //           this.userWeek[i] += 1
+    //         }
+    //       })
+    //       this.months?.forEach((date, i) => {
+    //         let d = data.created_at?.split('T')[0].split('-').slice(0, 2).join('-')
+    //         if (date == d) {
+    //           this.userMonth[i] += 1
+    //         }
+    //       })
+    //     })
+    //   })
+    // await lastValueFrom(this.service.get_activity())
+    //   .then((res) => {
+    //     this.activityTotal = res.data.length
+    //     res.data?.forEach((data: any) => {
+    //       this.dates?.forEach((date, i) => {
+    //         let d = data.created_at?.split("T")[0]
+    //         if (date == d) {
+    //           this.activityWeek[i] += 1
+    //         }
+    //       })
+    //       this.months?.forEach((date, i) => {
+    //         let d = data.created_at.split('T')[0].split('-').slice(0, 2).join('-')
+    //         if (date == d) {
+    //           this.activityMonth[i] += 1
+    //         }
+    //       })
+    //     })
+    //   })
 
-    await lastValueFrom(this.service.get_news())
+    // await lastValueFrom(this.service.get_news())
+    //   .then((res) => {
+    //     this.newsTotal = res.data.length
+    //     res?.data?.forEach((data: NewsModel) => {
+    //       this.dates?.forEach((date, i) => {
+    //         let d = data.created_at?.split("T")[0]
+    //         if (date == d) {
+    //           this.newsWeek[i] += 1
+    //         }
+    //       })
+    //       this.months?.forEach((date, i) => {
+    //         let d = data.created_at?.split('T')[0].split('-').slice(0, 2).join('-')
+    //         if (date == d) {
+    //           this.newsMonth[i] += 1
+    //         }
+    //       })
+    //     })
+    //   })
+
+      await lastValueFrom(this.service.get_laporan())
       .then((res) => {
-        this.newsTotal = res.data.length
-        res?.data?.forEach((data: NewsModel) => {
-          this.dates?.forEach((date, i) => {
-            let d = data.created_at?.split("T")[0]
-            if (date == d) {
-              this.newsWeek[i] += 1
-            }
-          })
-          this.months?.forEach((date, i) => {
-            let d = data.created_at?.split('T')[0].split('-').slice(0, 2).join('-')
-            if (date == d) {
-              this.newsMonth[i] += 1
-            }
-          })
-        })
+
+        this.laporan = res;
       })
-
-      // await lastValueFrom(this.service.get_laporan())
-      // .then((res) => {
-
-      //   this.laporan = res;
-      // })
-      // await lastValueFrom(this.service.get_asn())
-      // .then((res) => {
-      //   this.asn = res;
-      // })
-      // await lastValueFrom(this.service.get_kodeetik())
-      // .then((res) => {
-      //   this.kodeetik = res;
-      // })
-      // await lastValueFrom(this.service.get_pelanggaran())
-      // .then((res) => {
-      //   this.pelanggaran = res;
-      // })
-      // await lastValueFrom(this.service.get_pidana())
-      // .then((res) => {
-      //   console.log(res)
-      //   this.pidana = res;
-      // })
-      // await lastValueFrom(this.service.get_register())
-      // .then((res) => {
-      //   this.register = res;
-      // })
-      // await lastValueFrom(this.service.get_uulain())
-      // .then((res) => {
-      //   this.uulain = res;
-      // })
-      // await lastValueFrom(this.service.get_administrasi())
-      // .then((res) => {
-      //  this.administrasi = res;
-      // })
+      await lastValueFrom(this.service.get_asn())
+      .then((res) => {
+        this.asn = res;
+      })
+      await lastValueFrom(this.service.get_kodeetik())
+      .then((res) => {
+        this.kodeetik = res;
+      })
+      await lastValueFrom(this.service.get_pelanggaran())
+      .then((res) => {
+        this.pelanggaran = res;
+      })
+      await lastValueFrom(this.service.get_pidana())
+      .then((res) => {
+        console.log(res)
+        this.pidana = res;
+      })
+      await lastValueFrom(this.service.get_register())
+      .then((res) => {
+        this.register = res;
+      })
+      await lastValueFrom(this.service.get_uulain())
+      .then((res) => {
+        this.uulain = res;
+      })
+      await lastValueFrom(this.service.get_administrasi())
+      .then((res) => {
+       this.administrasi = res;
+      })
       // await lastValueFrom(this.service.get_dashboard_formC("Bentuk", "2023-01-01", "2023-05-01"))
       // .then((res) => {
       //   console.log(res);

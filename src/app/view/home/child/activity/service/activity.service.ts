@@ -52,7 +52,6 @@ export class ActivityService {
 
     this.getSubs = this.service.get(params).subscribe({
       next: (value) => {
-        console.log(value);
 
         this.allNews.emit(value.data!)
         this.loadingPage.emit(false)

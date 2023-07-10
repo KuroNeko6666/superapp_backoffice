@@ -1,4 +1,5 @@
 export class NotificationForm {
+  public id?: string
   public message?: string
   public type?: string
 

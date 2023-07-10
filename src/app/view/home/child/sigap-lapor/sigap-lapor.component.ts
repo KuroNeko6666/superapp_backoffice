@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/shared/service/notification.service
 import { ChartService } from '../dashboard/service/chart.service';
 import { DashboardService } from '../dashboard/service/dashboard.service';
 import html2canvas from 'html2canvas';
+import { DashboardSigapService } from './service/dashboard.service';
 @Component({
   selector: 'app-sigap-lapor',
   templateUrl: './sigap-lapor.component.html',
@@ -44,7 +45,7 @@ export class SigapLaporComponent {
 
 
   constructor(
-    public service: DashboardService,
+    public service: DashboardSigapService,
     private notif: NotificationService,
     public chart: ChartService
   ) { }

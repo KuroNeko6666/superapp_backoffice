@@ -46,7 +46,6 @@ export class LoginComponent {
       console.log("err");
 
       this.notif.Push(new NotificationForm("action failed to execute", "error"))
-      console.log(this.notif.notifications);
 
       this.email?.markAllAsTouched()
       this.password?.markAllAsTouched()
