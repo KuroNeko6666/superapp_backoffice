@@ -39,7 +39,7 @@ export class UserService {
   }
 
   delete(id: number): Observable<ResponseModel<string>> {
-    return this.client.delete<ResponseModel<string>>(this.uri.user.delete + id, {headers: this.hd.headers})
+    return this.client.delete<ResponseModel<string>>(this.uri.user.delete + id, {headers: this.hd.headers},)
   }
 
   updateAvatar(data: any, id: number): Observable<ResponseModel<string>> {
