@@ -141,9 +141,9 @@ export class AccountKeycloakComponent {
     // }
   }
 
-  delete(email: string) {
+  delete(id: string) {
     if (true) {
-      this.service.delete(email)
+      this.service.delete(id)
     } else {
       this.notif.Push(new NotificationForm("action failed to execute", "error"))
       this.password?.markAllAsTouched()

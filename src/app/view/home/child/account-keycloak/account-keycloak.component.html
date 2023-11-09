@@ -220,7 +220,7 @@
           <i class="fa-sharp fa-solid fa-xmark"></i>
           <span>Batal</span>
         </button>
-        <button (click)="delete(account?.email!)" type="button"
+        <button (click)="delete(account?.user_id?.toString() ?? '')" type="button"
           class="flex flex-row gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 rounded place-items-center text-slate-100">
           <i class="fa-solid fa-trash"></i>
           <span>Hapus</span>

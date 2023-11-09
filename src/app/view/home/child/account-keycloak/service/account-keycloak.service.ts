@@ -111,12 +111,10 @@ export class AccountKeycloakService {
     })
   }
 
-  public delete(email: string) {
+  public delete(id: string) {
     this.reset.emit()
     this.loading.emit(true)
-    var params = new HttpParams()
-      .set("email", email)
-    this.deleteSubs = this.service.delete(params).subscribe({
+    this.deleteSubs = this.service.delete(id).subscribe({
       next: (value) => {
         this.loading.emit(false)
         this.reset.emit(false)

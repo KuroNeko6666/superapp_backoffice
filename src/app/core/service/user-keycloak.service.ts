@@ -38,8 +38,8 @@ export class UserKeycloakService {
     return this.client.put<ResponseModel<string>>(this.uri.keycloak.update + id, data.JsonData, {headers: this.hd.headers})
   }
 
-  delete(params: HttpParams): Observable<ResponseModel<string>> {
-    return this.client.delete<ResponseModel<string>>(this.uri.keycloak.delete, {headers: this.hd.headers , params: params})
+  delete(id: String): Observable<ResponseModel<string>> {
+    return this.client.delete<ResponseModel<string>>(this.uri.keycloak.delete + id, {headers: this.hd.headers})
   }
 
   updateAvatar(data: any, id: number): Observable<ResponseModel<string>> {
